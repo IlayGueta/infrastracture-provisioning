@@ -1,4 +1,5 @@
 import json
+import uuid
 
 OS_OPTIONS = ["ubuntu", "centos"]
 AVAL_CPUS = [1, 2, 4, 8, 16]
@@ -19,19 +20,28 @@ def get_user_input():
     machines = []
 
     while True:
-        name = input("Enter machine name (or 'done' to finish): ").strip().lower()
-
-        if name == "done":
-            break
+        while True:
+            name = input("Enter machine name (or 'done' to finish): ").strip().lower()
+            if name == "done":
+                write_to_file("configs/instances.json", machines)
+                return machines
+            try:
+                validate_vm_name(name)
+                validate_unique_machine_name( name,machines,"configs/instances.json")
+                break
+            except Exception as error:
+                print(error)
 
         validate_vm_name(name)
+        validate_unique_machine_name(name, machines, "configs/instances.json")
         os = get_valid_input("Enter OS (Ubuntu/CentOS): ",validate_vm_os )
         cpu = get_valid_input(f"Enter CPU (e.g., 2vCPU): Minimum - {min(AVAL_CPUS)}vCPU Maximum - {max(AVAL_CPUS)}vCPU: ",validate_vm_resource,"vcpu",AVAL_CPUS,"CPU")
         ram = get_valid_input(f"Enter RAM (e.g., 4GB): Minimum - {min(AVAL_RAM)}GB Maximum - {max(AVAL_RAM)}GB: ",validate_vm_resource,"gb",AVAL_RAM,"RAM" )
-        instance_data = {"name": name,"os": os,"cpu": cpu,"ram": ram}
+        machine_id = str(uuid.uuid4())
+        instance_data = {"id": machine_id, "name": name,"os": os,"cpu": cpu,"ram": ram}
         machines.append(instance_data)
-    write_to_file("configs/instances.json", machines)
-    return machines
+        write_to_file("configs/instances.json", machines)
+        return machines
 
 
 def validate_instance_input(instance_data):
@@ -48,6 +58,23 @@ def validate_vm_name(name):
 
     if len(name) > 10:
         raise Exception("VM name should be up to 10 letters")
+
+
+def validate_unique_machine_name(name, machines, filename):
+    for machine in machines:
+        if machine["name"] == name:
+            raise Exception("Machine name already exists in current session")
+
+    try:
+        with open(filename, "r") as file:
+            json_data = json.load(file)
+
+    except (FileNotFoundError, json.JSONDecodeError):
+        json_data = {"machines": []}
+
+    for machine in json_data["machines"]:
+        if machine["name"] == name:
+            raise Exception("Machine name already exists in file")
 
 
 def validate_vm_os(os):
@@ -79,6 +106,8 @@ def write_to_file(filename, machines):
     try:
         with open(filename, "r") as file:
             json_data = json.load(file)
+            if "machines" not in json_data:
+                json_data["machines"] = []
 
     except (FileNotFoundError, json.JSONDecodeError):
         json_data = {
