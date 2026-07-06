@@ -32,8 +32,7 @@ def get_user_input():
             except Exception as error:
                 print(error)
 
-        validate_vm_name(name)
-        validate_unique_machine_name(name, machines, "configs/instances.json")
+
         os = get_valid_input("Enter OS (Ubuntu/CentOS): ",validate_vm_os )
         cpu = get_valid_input(f"Enter CPU (e.g., 2vCPU): Minimum - {min(AVAL_CPUS)}vCPU Maximum - {max(AVAL_CPUS)}vCPU: ",validate_vm_resource,"vcpu",AVAL_CPUS,"CPU")
         ram = get_valid_input(f"Enter RAM (e.g., 4GB): Minimum - {min(AVAL_RAM)}GB Maximum - {max(AVAL_RAM)}GB: ",validate_vm_resource,"gb",AVAL_RAM,"RAM" )
