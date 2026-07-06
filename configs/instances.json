@@ -1,0 +1,22 @@
+{
+    "machines": [
+        {
+            "name": "ilay",
+            "os": "ubuntu",
+            "cpu": "16vcpu",
+            "ram": "2gb"
+        },
+        {
+            "name": "gabv",
+            "os": "ubuntu",
+            "cpu": "8vcpu",
+            "ram": "2gb"
+        },
+        {
+            "name": "ilay",
+            "os": "ubuntu",
+            "cpu": "16 vcpu",
+            "ram": "64gb"
+        }
+    ]
+}
