@@ -125,6 +125,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-machines = get_user_input()
-print(machines)
