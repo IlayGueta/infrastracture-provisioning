@@ -1,3 +1,5 @@
+import subprocess
+
 class InfrastructureProvisioner:
     def __init__(self, machine):
         self.machine = machine
@@ -24,4 +26,10 @@ class InfrastructureProvisioner:
         self.install_os()
         self.configure_resources()
         self.configure_network()
+        self.run_install_script()
         self.finish()
+
+    def run_install_script(self):
+        print("Running installation script...")
+        subprocess.run(["bash", "scripts/install.sh"],check=True )
+        print("Installation script completed successfully.")

@@ -1,7 +1,16 @@
 import json
 import uuid
+import logging
 from machine import Machine
 from infra_simulator import InfrastructureProvisioner
+
+logging.basicConfig(
+    filename="logs/provisioning.log",
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s"
+)
+
+logging.info("Logging system started")
 
 OS_OPTIONS = ["ubuntu", "centos"]
 AVAL_CPUS = [1, 2, 4, 8, 16]

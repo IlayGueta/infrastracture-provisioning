@@ -13,6 +13,13 @@
             "os": "centos",
             "cpu": "1vcpu",
             "ram": "2gb"
+        },
+        {
+            "id": "dbdbdccc-11ce-461d-85fc-5fa6b5ec1303",
+            "name": "dani",
+            "os": "ubuntu",
+            "cpu": "16vcpu",
+            "ram": "64gb"
         }
     ]
 }
