@@ -1,3 +1,18 @@
 {
-    "machines": []
+    "machines": [
+        {
+            "id": "83de0a49-f571-4ea1-995a-5a134c7b644e",
+            "name": "ilay",
+            "os": "ubuntu",
+            "cpu": "16vcpu",
+            "ram": "64gb"
+        },
+        {
+            "id": "312764dd-f19d-468a-9003-e4aea6ee913c",
+            "name": "moshe",
+            "os": "centos",
+            "cpu": "1vcpu",
+            "ram": "2gb"
+        }
+    ]
 }

@@ -1,5 +1,7 @@
 import json
 import uuid
+from machine import Machine
+from infra_simulator import InfrastructureProvisioner
 
 OS_OPTIONS = ["ubuntu", "centos"]
 AVAL_CPUS = [1, 2, 4, 8, 16]
@@ -37,9 +39,11 @@ def get_user_input():
         cpu = get_valid_input(f"Enter CPU (e.g., 2vCPU): Minimum - {min(AVAL_CPUS)}vCPU Maximum - {max(AVAL_CPUS)}vCPU: ",validate_vm_resource,"vcpu",AVAL_CPUS,"CPU")
         ram = get_valid_input(f"Enter RAM (e.g., 4GB): Minimum - {min(AVAL_RAM)}GB Maximum - {max(AVAL_RAM)}GB: ",validate_vm_resource,"gb",AVAL_RAM,"RAM" )
         machine_id = str(uuid.uuid4())
-        instance_data = {"id": machine_id, "name": name,"os": os,"cpu": cpu,"ram": ram}
-        machines.append(instance_data)
+        machine = Machine(machine_id, name, os, cpu, ram)
+        machines.append(machine.to_dict())
         write_to_file("configs/instances.json", machines)
+        provisioner = InfrastructureProvisioner(machine)
+        provisioner.provision()
         return machines
 
 
