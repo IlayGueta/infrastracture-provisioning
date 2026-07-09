@@ -20,6 +20,34 @@
             "os": "ubuntu",
             "cpu": "16vcpu",
             "ram": "64gb"
+        },
+        {
+            "id": "073e60fe-9b4a-4cfc-9ecf-61dda5bdd965",
+            "name": "shimon",
+            "os": "ubuntu",
+            "cpu": "16vcpu",
+            "ram": "64gb"
+        },
+        {
+            "id": "a869b5f9-e61c-4d37-a8c7-676ee40619b2",
+            "name": "kkk",
+            "os": "ubuntu",
+            "cpu": "16vcpu",
+            "ram": "64gb"
+        },
+        {
+            "id": "6a0f57e0-b26d-49bc-b41c-083a84f45168",
+            "name": "grerggrw",
+            "os": "ubuntu",
+            "cpu": "16vcpu",
+            "ram": "64gb"
+        },
+        {
+            "id": "823553f0-4085-488d-858c-66e8d8db0a96",
+            "name": "2r2r3g",
+            "os": "ubuntu",
+            "cpu": "16vcpu",
+            "ram": "64gb"
         }
     ]
 }

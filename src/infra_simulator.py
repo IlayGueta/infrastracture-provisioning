@@ -1,5 +1,5 @@
 import subprocess
-
+import logging
 class InfrastructureProvisioner:
     def __init__(self, machine):
         self.machine = machine
@@ -31,5 +31,7 @@ class InfrastructureProvisioner:
 
     def run_install_script(self):
         print("Running installation script...")
-        subprocess.run(["bash", "scripts/install.sh"],check=True )
+        logging.info("Running installation script")
+        subprocess.run([r"D:\Git\usr\bin\bash.exe", "scripts/install_nginx.sh"],check=True)
+        logging.info("Installation script completed successfully")
         print("Installation script completed successfully.")

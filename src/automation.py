@@ -10,7 +10,6 @@ logging.basicConfig(
     format="%(asctime)s - %(levelname)s - %(message)s"
 )
 
-logging.info("Logging system started")
 
 OS_OPTIONS = ["ubuntu", "centos"]
 AVAL_CPUS = [1, 2, 4, 8, 16]
