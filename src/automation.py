@@ -45,7 +45,7 @@ class InfraAutomation:
         with open(self.config_path, "w", encoding="utf-8") as file:
             json.dump(json_data, file, indent=4)
 
-    def validate_name_machine(self, name):
+    def validate_duplicate_machine_name(self, name):
         machines = self.read_config_file()
         for machine in machines["machines"]:
             if machine["name"] == name:
@@ -57,9 +57,10 @@ class InfraAutomation:
 
         while True:
             name = input("Enter machine name (or 'done' to finish): ").strip().lower()
-            self.validate_name_machine(name)
             if name == "done":
                 break
+
+            self.validate_duplicate_machine_name(name)
 
             os_name = input(f"Enter OS {OS_OPTIONS}: ").strip().lower()
             cpu = input(f"Enter CPU (e.g., 2vCPU): Available resources {AVAL_CPUS} vCPUs : ").strip().lower()
@@ -70,6 +71,8 @@ class InfraAutomation:
 
             created_machines.append(machine_data)
             self.write_to_config_file(machine_data)
+
+            machine.log_creation()
 
             provisioner = InfrastructureProvisioner(machine)
             provisioner.provision()
