@@ -23,7 +23,7 @@ class Machine(BaseModel):
             logger.error("Machine name must not be empty")
             raise VMNameError("VM name cannot be empty")
         if len(value) > MAX_NAME_LENGTH:
-            logger.error("Machine name must be less than %s characters", MAX_NAME_LENGTH)
+            logger.error(f"Machine name must be less than {MAX_NAME_LENGTH} characters")
             raise VMNameError(f"VM name must be {MAX_NAME_LENGTH} characters or less")
         return value
 
@@ -32,7 +32,7 @@ class Machine(BaseModel):
     def validate_os(cls, value: str) -> str:
         value = value.strip().lower()
         if value not in OS_OPTIONS:
-            logger.error("Operating system must be one of: %s", OS_OPTIONS)
+            logger.error(f"Operating system must be one of: {OS_OPTIONS}")
             raise VMOSError(f"OS must be one of: {', '.join(OS_OPTIONS)}")
         return value
 
@@ -41,7 +41,7 @@ class Machine(BaseModel):
     def validate_cpu(cls, value: str) -> str:
         value = value.strip().lower()
         if not value.endswith("vcpu"):
-            logger.error("CPU format must be like '4vcpu'")
+            logger.error(f"CPU must be one of: {AVAL_CPUS}")
             raise VMResourceError("CPU format must be like '4vcpu'")
 
         try:
@@ -51,7 +51,7 @@ class Machine(BaseModel):
             raise VMResourceError("CPU must contain a valid number")
 
         if num not in AVAL_CPUS:
-            logger.error("CPU must be one of: %s", AVAL_CPUS)
+            logger.error(f"CPU must be one of: {AVAL_CPUS}")
             raise VMResourceError(f"CPU must be one of: {AVAL_CPUS} vCPUs")
         return value
 
@@ -70,12 +70,12 @@ class Machine(BaseModel):
             raise VMResourceError("RAM must contain a valid number")
 
         if num not in AVAL_RAM:
-            logger.error("RAM must be one of: %s", AVAL_RAM)
+            logger.error(f"RAM must be one of: {AVAL_RAM}")
             raise VMResourceError(f"RAM must be one of: {AVAL_RAM} GB")
         return value
 
     def log_creation(self):
-        logger.info("Machine created: %s (id=%s)", self.name, self.id)
+        logger.info(f"Machine created: {self.name} (id={self.id})")
 
     def to_dict(self) -> dict:
         return self.model_dump()

@@ -21,7 +21,7 @@ class InfrastructureProvisioner:
         logger.info(f"Configuring RAM: {self.machine.ram}")
 
     def configure_network(self):
-        logger.info(f"Configuring network settings for {self.machine} ...")
+        logger.info(f"Configuring network settings for {self.machine.name}...")
 
     def finish(self):
         logger.info(f"Provisioning completed successfully for Machine - {self.machine.name}.")
@@ -40,6 +40,6 @@ class InfrastructureProvisioner:
         logger.info("Running installation script")
         try:
             subprocess.run(["sh", "scripts/install_nginx.sh"], check=True)
+            logger.info("Installation script completed successfully")
         except subprocess.CalledProcessError as e:
             logger.warning(f"Script failed with return code {e.returncode}, output: {e.output}")
-        logger.info("Installation script completed successfully")
