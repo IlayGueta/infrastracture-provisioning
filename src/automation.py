@@ -100,7 +100,6 @@ class InfraAutomation:
         print("Created machines:", created_machines)
 
 
-
 def main():
     """Create and run the infrastructure automation application."""
 
