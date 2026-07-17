@@ -79,7 +79,7 @@ infrastracture-provisioning/
 - **`infra_simulator.py`** — Simulates infrastructure provisioning and runs the Bash script
 - **`constants.py`** — Stores allowed resources, file paths, and shared constant values
 - **`exceptions.py`** — Defines the project’s custom exceptions
-- **`install_nginx.sh`** — Bash script used to update packages and install Nginx
+- **`install_nginx.sh`** — Bash script used to simulate the Nginx installation process
 
 ---
 

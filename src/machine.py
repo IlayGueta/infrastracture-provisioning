@@ -2,6 +2,7 @@ import logging
 import uuid
 
 from pydantic import BaseModel, Field, field_validator
+
 from constants import AVAL_RAM, MAX_NAME_LENGTH, AVAL_CPUS, OS_OPTIONS, LOGGER_NAME
 from exceptions import VMNameError, VMOSError, VMResourceError
 
@@ -50,7 +51,7 @@ class Machine(BaseModel):
 
         value = value.strip().lower()
         if not value.endswith("vcpu"):
-            logger.error(f"CPU must be one of: {AVAL_CPUS}")
+            logger.error("CPU format must be like '4vcpu'")
             raise VMResourceError("CPU format must be like '4vcpu'")
 
         try:

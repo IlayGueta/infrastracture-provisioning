@@ -1,5 +1,6 @@
 import subprocess
 import logging
+
 from constants import LOGGER_NAME
 
 # Create a logger using the shared logger name
@@ -43,7 +44,7 @@ class InfrastructureProvisioner:
     def provision(self):
         """Run all infrastructure provisioning steps in the correct order."""
 
-        logger.info("\nStarting infrastructure provisioning...")
+        logger.info("Starting infrastructure provisioning...")
         self.create_vm()
         self.install_os()
         self.configure_resources()
@@ -55,7 +56,6 @@ class InfrastructureProvisioner:
         """Execute the Bash script used to install the required service."""
 
         logger.info(f"Running installation script for Machine - {self.machine.name}...")
-        logger.info("Running installation script")
         try:
             # Execute the Bash script and raise an error if it fails
             subprocess.run(["sh", "scripts/install_nginx.sh"], check=True)
