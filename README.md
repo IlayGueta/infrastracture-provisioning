@@ -53,7 +53,7 @@ The current provisioning process is simulated. Future versions can integrate Ter
 ## 📁 Project Structure
 
 ```text
-infrastructure-provisioning/
+infrastracture-provisioning/
 ├── configs/
 │   └── instances.json
 ├── logs/
@@ -99,8 +99,8 @@ Before installing the project, make sure the following tools are available:
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/IlayGueta/infrastructure-provisioning.git
-cd infrastructure-provisioning
+git clone https://github.com/IlayGueta/infrastracture-provisioning.git
+cd infrastracture-provisioning
 ```
 
 ### 2. Create a virtual environment
@@ -400,4 +400,4 @@ Use a different machine name or review the existing records in `configs/instance
 **Ilay Gueta**
 
 - GitHub: [@IlayGueta](https://github.com/IlayGueta)
-- Project: [Infrastructure Provisioning](https://github.com/IlayGueta/infrastructure-provisioning)
+- Project: [Infrastructure Provisioning](https://github.com/IlayGueta/infrastracture-provisioning)
